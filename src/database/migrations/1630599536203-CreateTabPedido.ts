@@ -1,11 +1,11 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateTabCadastro1630537276732 implements MigrationInterface {
+export class CreateTabPedido1630599536203 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "tab_cadastro",
+                name: "tab_pedido",
                 columns: [
                     {
                         name: "id",
@@ -15,22 +15,29 @@ export class CreateTabCadastro1630537276732 implements MigrationInterface {
                         generationStrategy: "increment"
                     },
                     {
-                        name: "cpf",
+                        name: "cd_cliente",
                         type: "varchar",
-                        length: "15"
+                        length: "5"
                     },
                     {
-                        name: "nome",
-                        type: "varchar",
-                        length: "50"
+                        name: "dh_pedido",
+                        type: "timestamp"
+                    },
+                    {
+                        name: "vl_total",
+                        type: "numeric",
+                        precision: 8,
+                        scale: 2,
                     }
+
                 ]
             })
+            
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("tab_cadastro")
+        await queryRunner.dropTable("tab_pedido")
     }
 
 }
